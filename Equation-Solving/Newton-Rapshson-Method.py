@@ -15,7 +15,7 @@ if __name__ == "__main__":
     plt.xlabel('x')
     plt.ylabel('f(x)')
     plt.tight_layout
-    # plt.show()
+    plt.show()
 
     # Derivative of f(x)
     def df(x):
