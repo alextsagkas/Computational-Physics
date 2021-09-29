@@ -2,7 +2,7 @@ from matplotlib import markers
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Langrange Polynomial of n^th Degree - The Degree is Specified by the Data We Use
+# Langrange Polynomial of n^th Degree - The Degree is Specified by the Data we Use
 def P(x_data, f_data, pos, x):  # pos is an array with elements the positions of x_data we use
 
     # n = Degree of the polynomial + 1
@@ -26,6 +26,19 @@ def P(x_data, f_data, pos, x):  # pos is an array with elements the positions of
 
     return P
 
+# Function to Generate Points for Graphs
+def graph(pos, n = 150):
+    x_graph = np.linspace(x_data[np.amin(pos)], x_data[np.amax(pos)], n)
+    y_graph = np.zeros(len(x_graph))
+
+    i = 0
+
+    for x in x_graph:
+        y_graph[i] += [P(x_data, f_data, pos, x)]
+        i += 1
+
+    return x_graph, y_graph
+
 if __name__ == "__main__":
     # Some Data
     x_data = [-1.6, -1.0, -0.4, 0.2, 0.8, 1.4]
@@ -39,30 +52,12 @@ if __name__ == "__main__":
     print(f'\tf(0) = {P(x_data, f_data, [1, 2, 3, 4, 5], 0):.6f}')
     print(f'\tf(1) = {P(x_data, f_data, [1, 2, 3, 4, 5], 1):.6f}')
 
-    def graph(pos, n = 150):
-        x_graph = np.linspace(x_data[np.amin(pos)], x_data[np.amax(pos)], n)
-        y_graph = np.zeros(len(x_graph))
-        i = 0
-
-        for x in x_graph:
-            y_graph[i] += [P(x_data, f_data, pos, x)]
-            i += 1
-        return x_graph, y_graph
-
-
     # Visualize the Lagrange Polynomials
     plt.subplot(1, 1, 1)
-    plt.plot(graph([1, 2, 3, 4])[0],
-             graph([1, 2, 3, 4])[1], linewidth = 1,
-             label = 'Third Degree with pos = [1, 2, 3, 4]')
-    plt.plot(graph([2, 3, 4, 5])[0],
-             graph([2, 3, 4, 5])[1], linewidth = 1,
-             label = 'Third Degree with pos = [2, 3, 4, 5]')
-    plt.plot(graph([1, 2, 3, 4, 5])[0],
-             graph([1, 2, 3, 4, 5])[1], linewidth = 1,
-             label = 'Fourth Degree with pos = [1, 2, 3, 4, 5]')
-    plt.scatter(x_data, f_data,color = 'black', marker = ".",
-                label = 'Sample Points')
+    plt.plot(graph([1, 2, 3, 4])[0], graph([1, 2, 3, 4])[1], linewidth = 1, label = 'Third Degree with pos = [1, 2, 3, 4]')
+    plt.plot(graph([2, 3, 4, 5])[0], graph([2, 3, 4, 5])[1], linewidth = 1, label = 'Third Degree with pos = [2, 3, 4, 5]')
+    plt.plot(graph([1, 2, 3, 4, 5])[0], graph([1, 2, 3, 4, 5])[1], linewidth = 1, label = 'Fourth Degree with pos = [1, 2, 3, 4, 5]')
+    plt.scatter(x_data, f_data, color = 'black', marker = ".", label = 'Sample Points')
 
     plt.legend(loc = 'lower center', prop = {'size': 10})
     plt.ylabel('$y$')
