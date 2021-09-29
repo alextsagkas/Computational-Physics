@@ -10,7 +10,7 @@ def f(x):
 
 if __name__ == "__main__":
     # Number of Random Numbers (Preferably use big number since this method converges rather slowly)
-    N = 10000
+    N = 100000
 
     # Limits of Integration
     a, b = 0, 10
