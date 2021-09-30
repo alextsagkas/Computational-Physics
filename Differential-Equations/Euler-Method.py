@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 # Write with LaTeX
 from matplotlib import rc
-
 rc('text', usetex=True)
 rc('font', family='serif')
+
+# State the Problem
 
 ''' We will solve the problem of throwing a point-like sphere with initial position:
 
@@ -22,8 +24,8 @@ phi = pi/6 [rad]. '''
 
 1. dv_x/dt = 0 = func_v_x(t, x, y, v_x, v_y),
 2. dv_y/dt = -g = func_v_y(t, x, y, v_x, v_y),
-3. dx/dt = v_0 * cos(phi) = v_x = func_x(t, x, y, v_x, v_y),
-4. dy/dt = v_0 * sin(phi) = v_y = func_y(t, x, y, v_x, v_y). '''
+3. dx/dt = v_x = func_x(t, x, y, v_x, v_y),
+4. dy/dt = v_y = func_y(t, x, y, v_x, v_y). '''
 
 def func_x(t, x, y, v_x, v_y):
     return v_x
@@ -108,7 +110,7 @@ if __name__ == '__main__':
     # Fix Quality
     Exy.tight_layout()
     #Save the Graph
-    Exy.savefig('Set2_Problem2_Exy.pdf')
+    Exy.savefig('Euler-Method-Results.pdf')
 
     Eexyt, (Eext, Eeyt) = plt.subplots(1, 2)
 
@@ -137,7 +139,7 @@ if __name__ == '__main__':
     # Fix Quality
     Eexyt.tight_layout()
     #Save the Graph
-    Eexyt.savefig('Set2_Problem2_Eexyt.pdf')
+    Eexyt.savefig('Erros-with-Respect-to-Time.pdf')
 
     # Sfalmata Synarthsei toy τ (Bhma)
     Eulere_x, Eulere_y = np.zeros(200), np.zeros(200)
@@ -179,4 +181,4 @@ if __name__ == '__main__':
     # Fix Quality
     Eexyτ.tight_layout()
     #Save the Graph
-    Eexyτ.savefig('Set2_Problem2_Eexystep.pdf')
+    Eexyτ.savefig('Erros-with–Respect-to-Time-Step.pdf')
